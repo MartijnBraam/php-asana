@@ -12,7 +12,7 @@ namespace PhpAsana;
 class Asana {
   private $apiKey;
   private $oathToken;
-  private $baseurl = '';
+  private $baseurl = 'https://app.asana.com/api/1.0/';
 
   public function loginApiKey($key){
     $this->apiKey = $key;
@@ -20,6 +20,15 @@ class Asana {
 
   public function loginOauthToken($token){
     $this->oathToken = $token;
+  }
+
+  public function getWorkspaces(){
+    $response = $this->asanaRequest('GET', 'workspaces');
+    $workspaces = array();
+    foreach($response['data'] as $workspace){
+      $workspaces[$workspace['name']] = new WorkSpace($workspace);
+    }
+    return $workspaces;
   }
 
   public function asanaRequest($method, $url, $payload = null){
