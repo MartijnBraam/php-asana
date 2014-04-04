@@ -55,8 +55,8 @@ class Project {
 
   private function load(){
     $alldata = $this->asanaconnection->asanaRequest('GET', 'projects/' . $this->id);
-    $this->createdAt->setTimestamp((int) $alldata['data']['created_at']);
-    $this->modifiedAt->setTimestamp((int) $alldata['data']['modified_at']);
+    $this->createdAt = new \DateTime($alldata['data']['created_at']);
+    $this->modifiedAt = new \DateTime($alldata['data']['modified_at']);
     $this->notes = $alldata['data']['notes'];
     $this->isPublic = $alldata['data']['public'];
     $this->isArchived = $alldata['data']['archived'];
@@ -79,5 +79,9 @@ class Project {
 
   public function delete(){
     $this->asanaconnection->asanaRequest('DELETE', 'projects/' . $this->id);
+  }
+
+  public function getTasks(){
+
   }
 } 

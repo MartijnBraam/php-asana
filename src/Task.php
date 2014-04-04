@@ -9,6 +9,6 @@
 namespace PhpAsana;
 
 
-class Issue {
+class Task {
 
 } 
