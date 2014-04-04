@@ -23,6 +23,9 @@ class Project {
   private $followers = array();
   private $asanaconnection;
 
+  private $lazyloaded = array('loaded', 'notes', 'createdAt', 'modifiedAt', 'isPublic', 'isArchived', 'color',
+                              'members', 'followers');
+
   public function __construct(Array $meta, Asana $asanaconnection){
     $this->id = $meta['id'];
     $this->name = $meta['name'];
@@ -33,13 +36,20 @@ class Project {
   }
 
   public function __get($name){
-    if(isset($this->$name)){
+    if(in_array($name, $this->lazyloaded)){
       if($this->loaded){
         return $this->$name;
       }else{
         $this->load();
         return $this->$name;
       }
+    }
+    return null;
+  }
+
+  public function __set($name, $value){
+    if(in_array($name, $this->lazyloaded)){
+      $this->$name = $value;
     }
   }
 
@@ -57,11 +67,14 @@ class Project {
     $this->loaded = true;
   }
 
-  public function rename($name){
-    $newdata = $this->asanaconnection->asanaRequest('PUT', 'workspace/' . $this->id, array(
-      'name' => $name
+  public function save(){
+    $this->asanaconnection->asanaRequest('PUT', 'projects/' . $this->id, array(
+      'name' => $this->name,
+      'notes' => $this->notes,
+      'public' => $this->isPublic,
+      'archived' => $this->isArchived,
+      'color' => $this->color
     ));
-    $this->name = $newdata['data']['name'];
   }
 
   public function getProjects(){
