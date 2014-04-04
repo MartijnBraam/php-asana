@@ -26,7 +26,7 @@ class Asana {
     $response = $this->asanaRequest('GET', 'workspaces');
     $workspaces = array();
     foreach($response['data'] as $workspace){
-      $workspaces[$workspace['name']] = new WorkSpace($workspace);
+      $workspaces[$workspace['name']] = new WorkSpace($workspace, $this);
     }
     return $workspaces;
   }
