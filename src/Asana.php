@@ -46,12 +46,12 @@ class Asana {
     $headers[] = 'Content-type: application/json';
 
     $curlopt = array(
-      'CURLOPT_URL' => $this->baseurl . $url,
-      'CURLOPT_RETURNTRANSFER' => true,
-      'CURLOPT_FAILONERROR' => true,
-      'CURLOPT_SSL_VERIFYPEER' => false,
-      'CURLOPT_SSL_VERIFYHOST' => false,
-      'CURLOPT_HTTPHEADER' => $headers,
+      CURLOPT_URL => $this->baseurl . $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_FAILONERROR => true,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_SSL_VERIFYHOST => false,
+      CURLOPT_HTTPHEADER => $headers,
     );
     curl_setopt_array($curl, $curlopt);
     if($method == 'POST'){
