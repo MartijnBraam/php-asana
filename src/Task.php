@@ -10,5 +10,15 @@ namespace PhpAsana;
 
 
 class Task {
+  public function save(){
+    //TODO: implement save()
+  }
 
+  public function assignTo(){
+    //TODO: implement assignTo()
+  }
+
+  public function delete(){
+    //TODO: implement delete()
+  }
 } 

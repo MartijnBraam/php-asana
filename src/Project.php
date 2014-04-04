@@ -81,7 +81,11 @@ class Project {
     $this->asanaconnection->asanaRequest('DELETE', 'projects/' . $this->id);
   }
 
-  public function getTasks(){
+  public function getTasks($filters){
+    //TODO: implement getTasks(filters)
+  }
 
+  public function createTask(){
+    //TODO: implement createTask()
   }
 } 

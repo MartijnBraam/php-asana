@@ -35,4 +35,8 @@ class WorkSpace {
     }
     return $projects;
   }
+
+  public function createProject($name){
+    //TODO: implement createProject()
+  }
 } 
