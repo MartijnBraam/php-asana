@@ -58,6 +58,8 @@ class Asana {
       curl_setopt($curl, CURLOPT_POST, true);
     }elseif($method == 'PUT'){
       curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
+    }elseif($method == 'DELETE'){
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
     }
     if($payload != null && in_array($method, array('POST', 'PUT'))){
       curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));

@@ -77,12 +77,7 @@ class Project {
     ));
   }
 
-  public function getProjects(){
-    $response = $this->asanaconnection->asanaRequest('GET', 'workspaces/' . $this->id . '/projects');
-    $projects = array();
-    foreach($response['data'] as $project){
-      $projects[$project['name']] = new Project($project, $this);
-    }
-    return $projects;
+  public function delete(){
+    $this->asanaconnection->asanaRequest('DELETE', 'projects/' . $this->id);
   }
 } 
