@@ -9,6 +9,6 @@
 namespace PhpAsana;
 
 
-class WorkBench {
+class WorkSpace {
 
 } 
