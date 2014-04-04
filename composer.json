@@ -1,0 +1,22 @@
+{
+    "name": "MartijnBraam/php-asana",
+    "description": "Asana API interface",
+    "minimum-stability": "dev",
+    "license": "gpl",
+    "authors": [
+        {
+            "name": "Martijn Braam",
+            "email": "martijn@brixit.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhpAsana\\": "src/"
+        }
+    },
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
