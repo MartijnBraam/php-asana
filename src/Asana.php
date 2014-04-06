@@ -13,6 +13,7 @@ class Asana {
   private $apiKey;
   private $oathToken;
   private $baseurl = 'https://app.asana.com/api/1.0/';
+  public $userInfo;
 
   public function loginApiKey($key){
     $this->apiKey = $key;
@@ -24,11 +25,21 @@ class Asana {
 
   public function getWorkspaces(){
     $response = $this->asanaRequest('GET', 'workspaces');
+    $this->userInfo = $this->getUsers();
     $workspaces = array();
     foreach($response['data'] as $workspace){
       $workspaces[$workspace['name']] = new WorkSpace($workspace, $this);
     }
     return $workspaces;
+  }
+
+  public function getUsers(){
+    $response = $this->asanaRequest('GET', 'users?opt_fields=name,email');
+    $users = array();
+    foreach($response['data'] as $user){
+      $users[$user['id']] = new User($user, $this);
+    }
+    return $users;
   }
 
   public function asanaRequest($method, $url, $payload = null){

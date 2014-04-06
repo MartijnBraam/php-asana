@@ -59,7 +59,7 @@ class Task {
     $this->modifiedAt = new \DateTime($alldata['data']['modified_at']);
     $this->completedAt = new \DateTime($alldata['data']['completed_at']);
     $this->dueOn = new \DateTime($alldata['data']['due_on']);
-    $this->assignee = $alldata['data']['assignee'];
+    $this->assignee = $this->asanaconnection->userInfo[$alldata['data']['assignee']['id']];
     $this->isCompleted = $alldata['data']['completed'];
     $this->followers = $alldata['data']['followers'];
     $this->notes = $alldata['data']['notes'];
