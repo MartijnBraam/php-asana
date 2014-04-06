@@ -82,7 +82,12 @@ class Project {
   }
 
   public function getTasks($filters){
-    //TODO: implement getTasks(filters)
+    $response = $this->asanaconnection->asanaRequest('GET', 'projects/' . $this->id . '/tasks');
+    $tasks = array();
+    foreach($response['data'] as $task){
+      $tasks[$task['name']] = new Task($task, $this->asanaconnection);
+    }
+    return $tasks;
   }
 
   public function createTask(){
