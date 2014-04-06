@@ -81,8 +81,24 @@ class Project {
     $this->asanaconnection->asanaRequest('DELETE', 'projects/' . $this->id);
   }
 
-  public function getTasks($filters){
-    $response = $this->asanaconnection->asanaRequest('GET', 'projects/' . $this->id . '/tasks');
+  public function getTasks($filters = array()){
+    $url = 'projects/' . $this->id . '/tasks';
+    if(count($filters) > 0){
+      if(isset($filters['completed_since'])){
+        if(!($filters['completed_since'] instanceof \DateTime)){
+          $filters['completed_since'] = new \DateTime($filters['completed_since']);
+        }
+        $filters['completed_since'] = $filters['completed_since']->format("c");
+      }
+      if(isset($filters['modified_since'])){
+        if(!($filters['modified_since'] instanceof \DateTime)){
+          $filters['modified_since'] = new \DateTime($filters['modified_since']);
+        }
+        $filters['modified_since'] = $filters['modified_since']->format("c");
+      }
+      $url .= '?' . http_build_query($filters);
+    }
+    $response = $this->asanaconnection->asanaRequest('GET', $url);
     $tasks = array();
     foreach($response['data'] as $task){
       $tasks[$task['name']] = new Task($task, $this->asanaconnection);
