@@ -29,7 +29,7 @@ class Task {
   private $lazyloaded = array('assignee', 'createdAt', 'isCompleted', 'completedAt', 'dueOn', 'followers', 'modifiedAt',
     'notes', 'parentTask');
 
-  public function __construct(Array $meta, Asana $asanaconnection){
+  public function __construct(Array $meta, AsanaInterface $asanaconnection){
     $this->id = $meta['id'];
     $this->name = $meta['name'];
     $this->asanaconnection = $asanaconnection;

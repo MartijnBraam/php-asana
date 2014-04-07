@@ -9,7 +9,7 @@
 namespace PhpAsana;
 
 
-class Asana {
+class Asana implements AsanaInterface {
   private $apiKey;
   private $oathToken;
   private $baseurl = 'https://app.asana.com/api/1.0/';

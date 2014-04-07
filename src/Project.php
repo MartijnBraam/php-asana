@@ -26,7 +26,7 @@ class Project {
   private $lazyloaded = array('loaded', 'notes', 'createdAt', 'modifiedAt', 'isPublic', 'isArchived', 'color',
                               'members', 'followers');
 
-  public function __construct(Array $meta, Asana $asanaconnection){
+  public function __construct(Array $meta, AsanaInterface $asanaconnection){
     $this->id = $meta['id'];
     $this->name = $meta['name'];
     $this->asanaconnection = $asanaconnection;

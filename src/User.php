@@ -16,7 +16,7 @@ class User {
 
   private $asanaconnection;
 
-  public function __construct(Array $meta, Asana $asanaconnection){
+  public function __construct(Array $meta, AsanaInterface $asanaconnection){
     $this->id = $meta['id'];
     $this->name = $meta['name'];
     $this->email = $meta['email'];
