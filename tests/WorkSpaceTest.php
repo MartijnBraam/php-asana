@@ -11,7 +11,6 @@ class WorkSpaceTest extends PHPUnit_Framework_TestCase {
 
   public function testGetWorkspaces() {
     $asanatester = new AsanaTester();
-
   }
 }
  
