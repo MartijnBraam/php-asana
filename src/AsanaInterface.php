@@ -9,12 +9,4 @@ namespace PhpAsana;
 
 interface AsanaInterface {
   public function asanaRequest($method, $url, $payload = NULL);
-
-  public function loginApiKey($key);
-
-  public function loginOauthToken($token);
-
-  public function getWorkspaces();
-
-  public function getUsers();
 }
