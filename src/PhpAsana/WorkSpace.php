@@ -10,8 +10,8 @@ namespace PhpAsana;
 
 
 class WorkSpace {
-  private $id;
-  private $name;
+  public $id;
+  public $name;
   private $asanaconnection;
 
   public function __construct(Array $meta, AsanaInterface $asanaconnection){
