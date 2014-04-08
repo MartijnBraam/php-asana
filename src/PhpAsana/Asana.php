@@ -33,6 +33,12 @@ class Asana implements AsanaInterface {
     return $workspaces;
   }
 
+  public function getWorkspaceById($id){
+    $response = $this->asanaRequest('GET', 'workspaces/' . $id);
+    $this->userInfo = $this->getUsers();
+    return new WorkSpace($response['data'], $this);
+  }
+
   public function getUsers(){
     $response = $this->asanaRequest('GET', 'users?opt_fields=name,email');
     $users = array();
