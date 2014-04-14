@@ -35,6 +35,15 @@ class Project {
     $this->modifiedAt = new \DateTime();
   }
 
+  public static function fromId($id, $asanaconnection){
+      $instance = new Project(array(
+          'id' => $id,
+          'name' => ''
+      ), $asanaconnection);
+      $instance->load();
+      return $instance;
+  }
+
   public function __get($name){
     if(in_array($name, $this->lazyloaded)){
       if($this->loaded){
@@ -63,7 +72,7 @@ class Project {
     $this->color = $alldata['data']['color'];
     $this->followers = $alldata['data']['followers'];
     $this->members = $alldata['data']['members'];
-
+    $this->name = $alldata['data']['name'];
     $this->loaded = true;
   }
 

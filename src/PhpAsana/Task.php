@@ -12,6 +12,7 @@ namespace PhpAsana;
 class Task {
   public $id;
   public $name;
+  public $isLabel = false;
 
   private $loaded = false;
   private $assignee;
@@ -32,6 +33,9 @@ class Task {
   public function __construct(Array $meta, AsanaInterface $asanaconnection){
     $this->id = $meta['id'];
     $this->name = $meta['name'];
+    if(substr($this->name, -1) == ':'){
+        $this->isLabel = true;
+    }
     $this->asanaconnection = $asanaconnection;
   }
 
